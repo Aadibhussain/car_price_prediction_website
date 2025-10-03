@@ -1,0 +1,82 @@
+{
+  "dataset_overview": {
+    "total_records": 150000,
+    "total_parts": 3,
+    "records_per_part": 50000,
+    "brands_covered": 15,
+    "states_covered": 15,
+    "cities_covered": 73,
+    "year_range": "2008-2024",
+    "price_range_inr": "\u20b927,000 - \u20b910,798,000",
+    "average_price_inr": 551229,
+    "median_price_inr": 435000
+  },
+  "file_structure": {
+    "csv_files": [
+      "indian_cars_part_1.csv",
+      "indian_cars_part_2.csv",
+      "indian_cars_part_3.csv"
+    ],
+    "json_files": [
+      "indian_cars_part_1.json",
+      "indian_cars_part_2.json",
+      "indian_cars_part_3.json"
+    ],
+    "usage": "Combine all parts for complete dataset, or use individual parts for smaller analysis"
+  },
+  "market_analysis": {
+    "top_brands": {
+      "Maruti Suzuki": 63991,
+      "Hyundai": 23930,
+      "Tata": 18445,
+      "Mahindra": 9918,
+      "Honda": 7213,
+      "Toyota": 5758,
+      "Kia": 5756,
+      "Renault": 3439,
+      "Nissan": 2896,
+      "Ford": 2787
+    },
+    "fuel_distribution": {
+      "Petrol": 77893,
+      "Diesel": 54030,
+      "CNG": 12090,
+      "Electric": 3040,
+      "Hybrid": 2947
+    },
+    "state_wise_count": {
+      "Maharashtra": 10000,
+      "Karnataka": 10000,
+      "Tamil Nadu": 10000,
+      "Delhi": 10000,
+      "Gujarat": 10000,
+      "West Bengal": 10000,
+      "Rajasthan": 10000,
+      "Uttar Pradesh": 10000,
+      "Haryana": 10000,
+      "Punjab": 10000,
+      "Telangana": 10000,
+      "Kerala": 10000,
+      "Madhya Pradesh": 10000,
+      "Bihar": 10000,
+      "Jharkhand": 10000
+    },
+    "price_by_brand": {
+      "Audi": 2881174,
+      "BMW": 3185840,
+      "Ford": 662931,
+      "Honda": 896742,
+      "Hyundai": 453152,
+      "Kia": 728872,
+      "Mahindra": 607437,
+      "Maruti Suzuki": 410821,
+      "Mercedes-Benz": 3328634,
+      "Nissan": 691775,
+      "Renault": 625933,
+      "Skoda": 935957,
+      "Tata": 373063,
+      "Toyota": 937553,
+      "Volkswagen": 1011142
+    }
+  }
+}

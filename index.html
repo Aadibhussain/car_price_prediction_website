@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarValue Pro - Accurate Car Price Prediction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <h1 class="nav-brand">CarValue Pro</h1>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#predict" class="nav-link">Predict Price</a>
+                    <a href="#trends" class="nav-link">Market Trends</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Get Accurate Car Price Predictions</h1>
+                <p class="hero-subtitle">Our advanced AI-powered system analyzes market trends, depreciation rates, and vehicle specifications to give you the most accurate car valuation in India.</p>
+                <button class="btn btn--primary btn--lg" onclick="scrollToPredict()">Predict Car Price</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Prediction Form -->
+    <section id="predict" class="prediction-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Car Price Prediction</h2>
+                <p>Fill in your car details to get an accurate price estimate</p>
+            </div>
+
+            <div class="prediction-container">
+                <div class="form-card card">
+                    <div class="card__body">
+                        <form id="carPredictionForm" class="prediction-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="brand" class="form-label">Car Brand</label>
+                                    <select id="brand" name="brand" class="form-input" required>
+                                        <option value="">Select Brand</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="model" class="form-label">Model</label>
+                                    <input type="text" id="model" name="model" class="form-input" placeholder="e.g., Swift, City, i10" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="year" class="form-label">Year</label>
+                                    <select id="year" name="year" class="form-input" required>
+                                        <option value="">Select Year</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fuelType" class="form-label">Fuel Type</label>
+                                    <select id="fuelType" name="fuelType" class="form-input" required>
+                                        <option value="">Select Fuel Type</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="transmission" class="form-label">Transmission</label>
+                                    <select id="transmission" name="transmission" class="form-input" required>
+                                        <option value="">Select Transmission</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="kilometers" class="form-label">Kilometers Driven</label>
+                                    <input type="number" id="kilometers" name="kilometers" class="form-input" placeholder="e.g., 45000" min="0" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="engineSize" class="form-label">Engine Size (CC)</label>
+                                    <input type="number" id="engineSize" name="engineSize" class="form-input" placeholder="e.g., 1200" min="600" max="5000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ownerType" class="form-label">Owner Type</label>
+                                    <select id="ownerType" name="ownerType" class="form-input" required>
+                                        <option value="">Select Owner Type</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city" class="form-label">City</label>
+                                    <select id="city" name="city" class="form-input" required>
+                                        <option value="">Select City</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="condition" class="form-label">Condition</label>
+                                    <select id="condition" name="condition" class="form-input" required>
+                                        <option value="">Select Condition</option>
+                                        <option value="excellent">Excellent</option>
+                                        <option value="good">Good</option>
+                                        <option value="fair">Fair</option>
+                                        <option value="poor">Poor</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn--primary btn--lg" id="predictBtn">
+                                    <span class="btn-text">Predict Price</span>
+                                    <span class="btn-loading" style="display: none;">
+                                        <span class="loading-spinner"></span>
+                                        Calculating...
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div id="resultsSection" class="results-section" style="display: none;">
+                    <div class="results-card card">
+                        <div class="card__body">
+                            <div class="results-header">
+                                <h3>Price Prediction Result</h3>
+                                <div class="confidence-badge" id="confidenceBadge">
+                                    <span id="confidenceLevel">85%</span> Confidence
+                                </div>
+                            </div>
+
+                            <div class="price-display">
+                                <div class="price-main">
+                                    <span class="currency">₹</span>
+                                    <span id="predictedPrice" class="price-amount">0</span>
+                                </div>
+                                <div class="price-range">
+                                    Range: ₹<span id="priceMin">0</span> - ₹<span id="priceMax">0</span>
+                                </div>
+                            </div>
+
+                            <div class="price-breakdown">
+                                <h4>Price Breakdown</h4>
+                                <div class="breakdown-items" id="breakdownItems">
+                                    <!-- Dynamic breakdown items will be inserted here -->
+                                </div>
+                            </div>
+
+                            <div class="market-comparison">
+                                <h4>Market Analysis</h4>
+                                <div class="comparison-item">
+                                    <span class="comparison-label">Market Average:</span>
+                                    <span class="comparison-value" id="marketAverage">₹0</span>
+                                </div>
+                                <div class="comparison-item">
+                                    <span class="comparison-label">Your Car Value:</span>
+                                    <span class="comparison-value" id="yourCarValue">Above Average</span>
+                                </div>
+                            </div>
+
+                            <div class="recommendations">
+                                <h4>Recommendations</h4>
+                                <ul id="recommendationsList">
+                                    <!-- Dynamic recommendations will be inserted here -->
+                                </ul>
+                            </div>
+
+                            <div class="action-buttons">
+                                <button class="btn btn--secondary" onclick="resetForm()">New Prediction</button>
+                                <button class="btn btn--primary" onclick="shareResult()">Share Result</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Trends Section -->
+    <section id="trends" class="trends-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Market Trends</h2>
+                <p>Latest insights from the used car market</p>
+            </div>
+
+            <div class="trends-grid">
+                <div class="trend-card card">
+                    <div class="card__body">
+                        <div class="trend-icon">📈</div>
+                        <h3>Price Appreciation</h3>
+                        <p>Luxury cars are showing 15% better resale value compared to last year</p>
+                    </div>
+                </div>
+                <div class="trend-card card">
+                    <div class="card__body">
+                        <div class="trend-icon">⚡</div>
+                        <h3>Electric Vehicles</h3>
+                        <p>EV resale values are stabilizing with 30% premium over petrol variants</p>
+                    </div>
+                </div>
+                <div class="trend-card card">
+                    <div class="card__body">
+                        <div class="trend-icon">🏆</div>
+                        <h3>Top Brands</h3>
+                        <p>Toyota, Honda, and Maruti lead in resale value retention</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions about car valuation? We're here to help!</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>support@carvaluepro.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h4>Website</h4>
+                            <p>www.carvaluepro.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-input" rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CarValue Pro</h3>
+                    <p>India's most accurate car price prediction platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#predict">Predict Price</a></li>
+                        <li><a href="#trends">Market Trends</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Car Valuation</a></li>
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Price Trends</a></li>
+                        <li><a href="#">Expert Advice</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CarValue Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

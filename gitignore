@@ -1,0 +1,11 @@
+requirements.txt
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+node_modules/
+.vscode/
+.env
+*.pyc
+__pycache__/
+.pytest_cache/
